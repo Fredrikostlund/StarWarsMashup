@@ -8,7 +8,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body ng-app="app" ng-controller="ctrl">
-  {{test}}
+  <div ng-view>
+
+  </div>
+  <a href="#/!" class="btn btn-default" role="button">Landning page</a>
+  <a href="#!starship_search" class="btn btn-default" role="button">Starship Search</a>
+  <a href="#!create_user" class="btn btn-default" role="button">Create User</a>
+
   <script src="js_files/controller.js"></script>
   <script src="js_files/routning.js"></script>
 
