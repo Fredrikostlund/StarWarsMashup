@@ -42,10 +42,4 @@ app.controller('ctrl', function($scope, $http, $location) {
       console.log(response.data.rates);
     });
   }
-
-
-
-
-
-
 });
