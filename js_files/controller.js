@@ -7,6 +7,8 @@ app.controller('ctrl', function($scope, $http, $location) {
 
   $scope.starships = getStarships();
 
+  $scope.currencies = [];
+
   function getStarships(){
     var pageNr = 1;
     var starshipArray = [];
@@ -30,16 +32,15 @@ app.controller('ctrl', function($scope, $http, $location) {
     console.log("starships inne:" + $scope.starships);
   }
 
-  $scope.getCurrency = function(){
     $http({
       method: 'GET',
       url: 'http://data.fixer.io/api/latest',
       params:{
         access_key: '02aacf6725af847bc2910eb143d3b61b',
-        symbols: 'SEK'
       }
     }).then(function(response){
       console.log(response.data.rates);
+      $scope.currencies = response.data.rates;
+      console.log($scope.currencies);
     });
-  }
 });

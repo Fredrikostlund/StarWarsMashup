@@ -5,7 +5,18 @@
 
 <select class="form-control" ng-model="selectedStarship" ng-options="starships as starships.name for starships in starships">
 </select>
+<select class="form-control" ng-model="selectedCurrencies">
+  <option value="{{value}}" ng-repeat="(key, value) in currencies">{{key}}</option>
+</select>
 
 <h4>
-  {{selectedStarship.cost_in_credits}}
+  Starship Cost: {{selectedStarship.cost_in_credits}}
+</h4>
+
+<h4>
+  Rate: {{selectedCurrencies}}
+</h4>
+
+<h4>
+  Cost by rate: {{selectedCurrencies * selectedStarship.cost_in_credits}}
 </h4>
