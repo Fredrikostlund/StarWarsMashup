@@ -60,6 +60,8 @@ app.controller('ctrl', function($scope, $http, $location) {
     });
 
   $scope.createUser  = function() {
+    console.log($scope.User.User_character);
+    console.log($scope.User.User_name);
     $http.post("php_files/createUser.php", {
       //TODO make sure connection to html is correct
       'character': $scope.User.User_character,
