@@ -2,11 +2,14 @@
 <p>
   {{test_create_user}}
 </p>
-<form ng-submit="createUser()">
+<form ng-submit="createUser(User.User_name)">
   <div class="form-group">
     <label for="inputName">Name</label>
     <input type="text" class="form-control" id="inputName"placeholder="Name" ng-model="User.User_name" required/>
     <br />
+    <div ng-show="UserInDb">
+      Username already taken!
+    </div>
     <label for="inputCharacter">Favorite character</label> <br />
     <select class="selectpicker" name="character" id="inputCharacter" ng-model="User.User_character" placeholder="Choose character" required>
       <option ng-repeat="character in characters | orderBy: 'name'" value="{{character.name}}">

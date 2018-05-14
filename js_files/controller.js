@@ -8,6 +8,8 @@ app.controller('ctrl', function($scope, $http, $location) {
   $scope.starships = getStarships();
   $scope.currencies = [];
   $scope.characters = getCharacters();
+  $scope.ErrUser = false;
+  $scope.UserInDb = false;
 
   function getStarships(){
     var pageNr = 1;
@@ -59,23 +61,56 @@ app.controller('ctrl', function($scope, $http, $location) {
       console.log($scope.currencies);
     });
 
-  $scope.createUser  = function() {
-    console.log($scope.User.User_character);
-    console.log($scope.User.User_name);
-    $http.post("php_files/createUser.php", {
-      //TODO make sure connection to html is correct
-      'character': $scope.User.User_character,
-      'name': $scope.User.User_name
-    }).then(function(response){
-      console.log(response);
-    })
-  }
+  $scope.createUser  = function(name) {
+    //var temp = getUser(name);
+    //console.log("Return från getUser är: " + getUser(name) + " Name: " + name);
+    $scope.getUser(name);
+    if($scope.ErrUser) {
+      console.log($scope.User.User_character);
+      console.log($scope.User.User_name);
+      $http.post("php_files/createUser.php", {
+        //TODO make sure connection to html is correct
+        'character': $scope.User.User_character,
+        'name': $scope.User.User_name
+      }).then(function(response){
+        console.log(response);
+        $scope.UserInDb = false;
+      })
+    } else {
+      console.log("User already in database");
+      $scope.UserInDb = true;
+    }
 
+  }
+  function getUserScope(input) {
+    // getUser(name);
+    if(input == 1) {
+      $scope.ErrUser = true;
+    } else {
+      $scope.ErrUser = false;
+    }
+  }
   $scope.getUser = function(name){
+    var tempErr = null;
+    var input = null;
     $http.post("php_files/getUser.php", {
       'userName' : name
     }).then(function(response){
       console.log(response.data);
+      if(response.data == 1) {
+        $scope.ErrUser = true;
+        tempErr = true;
+        console.log($scope.ErrUser);
+        input = 1;
+        getUserScope(input);
+      }
+      else {
+        $scope.ErrUser = false;
+        tempErr =false;
+        input = 0;
+        getUserScope(input);
+      }
     })
+    //return tempErr;
   }
 });

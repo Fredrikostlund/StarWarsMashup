@@ -4,6 +4,11 @@
   <input type="text" placeholder="User name" ng-model="userName" required />
   <button type="submit">Search User</button>
 </form>
+<div ng-show="ErrUser">
+  <p>
+    Error: User not found
+  </p>
+</div>
 <p>
   {{test_landning_page}}
 </p>
