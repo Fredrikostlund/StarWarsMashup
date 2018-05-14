@@ -24,7 +24,7 @@ app.controller('ctrl', function($scope, $http, $location) {
       if(pageNr == 4){
         return starshipArray;
       }
-      pageNr=pageNr + 1;
+      pageNr+= 1;
     }
   }
 
