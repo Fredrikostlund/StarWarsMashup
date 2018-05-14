@@ -2,3 +2,20 @@
 <p>
   {{test_create_user}}
 </p>
+<form>
+  <div class="form-group">
+    <label for="inputName">Name</label>
+    <input type="text" class="form-control" id="inputName"placeholder="Name" ng-model="User_name" />
+    <br />
+    <label for="inputCharacter">Favorite character</label> <br />
+    <select class="selectpicker" name="character" id="inputCharacter" ng-model="User_character" placeholder="Choose character" required>
+      <option ng-repeat="character in characters" value="{{User.User_character}}">
+        {{character.character_name}}
+      </option>
+    </select>
+    <br />
+    <br />
+    <button type="submit" ng-click="createUser()" class="btn btn-default">Create user</button>
+  </div>
+
+</form>

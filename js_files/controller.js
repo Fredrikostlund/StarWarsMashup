@@ -6,7 +6,6 @@ app.controller('ctrl', function($scope, $http, $location) {
   $scope.test_create_user="The create_user page works"
 
   $scope.starships = getStarships();
-
   $scope.currencies = [];
 
   function getStarships(){
@@ -28,10 +27,6 @@ app.controller('ctrl', function($scope, $http, $location) {
     }
   }
 
-  $scope.log = function(){
-    console.log("starships inne:" + $scope.starships);
-  }
-
     $http({
       method: 'GET',
       url: 'http://data.fixer.io/api/latest',
@@ -43,4 +38,14 @@ app.controller('ctrl', function($scope, $http, $location) {
       $scope.currencies = response.data.rates;
       console.log($scope.currencies);
     });
+
+  function createUser() {
+    $http.post("php_files/createUser.php", {
+      //TODO make sure connection to html is correct
+      'character': $scope.User.User_character,
+      'name': $scope.User_name
+    }).then(function(response){
+      console.log(response);
+    })
+  }
 });
