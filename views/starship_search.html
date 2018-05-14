@@ -6,7 +6,7 @@
 <select class="form-control" ng-model="selectedStarship" ng-options="starships as starships.name for starships in starships">
 </select>
 <select class="form-control" ng-model="selectedCurrencies">
-  <option value="{{value}}" ng-repeat="(key, value) in currencies">{{key}}</option>
+  <option value="{{value}}" ng-repeat="(key, value) in currencies | orderBy: 'key'">{{key}}</option>
 </select>
 
 <h4>

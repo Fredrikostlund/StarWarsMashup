@@ -7,6 +7,7 @@ app.controller('ctrl', function($scope, $http, $location) {
 
   $scope.starships = getStarships();
   $scope.currencies = [];
+  $scope.characters = getCharacters();
 
   function getStarships(){
     var pageNr = 1;
@@ -27,6 +28,25 @@ app.controller('ctrl', function($scope, $http, $location) {
     }
   }
 
+  function getCharacters(){
+    var pageNr = 1;
+    var characterArray = [];
+    while(pageNr < 10){
+      $http({
+        method: 'GET',
+        url: 'https://swapi.co/api/people/?page=' + pageNr,
+      }).then(function(response){
+        angular.forEach(response.data.results,function(value,index){
+          characterArray.push(value);
+        });
+      });
+      if(pageNr == 9){
+        return characterArray;
+      }
+      pageNr+= 1;
+    }
+  }
+
     $http({
       method: 'GET',
       url: 'http://data.fixer.io/api/latest',
@@ -39,11 +59,11 @@ app.controller('ctrl', function($scope, $http, $location) {
       console.log($scope.currencies);
     });
 
-  function createUser() {
+  $scope.createUser  = function() {
     $http.post("php_files/createUser.php", {
       //TODO make sure connection to html is correct
       'character': $scope.User.User_character,
-      'name': $scope.User_name
+      'name': $scope.User.User_name
     }).then(function(response){
       console.log(response);
     })
