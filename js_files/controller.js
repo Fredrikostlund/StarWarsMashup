@@ -68,4 +68,12 @@ app.controller('ctrl', function($scope, $http, $location) {
       console.log(response);
     })
   }
+
+  $scope.getUser = function(name){
+    $http.post("php_files/getUser.php", {
+      'userName' : name
+    }).then(response){
+      console.log(response.data);
+    }
+  }
 });
