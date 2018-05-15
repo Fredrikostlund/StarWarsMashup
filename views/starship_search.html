@@ -20,3 +20,12 @@
 <h4>
   Cost by rate: {{selectedCurrencies * selectedStarship.cost_in_credits}}
 </h4>
+<h3>
+  Vem är i session:
+</h3>
+
+<ul>
+  <li ng-repeat="Fav in Favs track by $index">
+    {{Fav.Fav_name}}
+  </li>
+</ul>

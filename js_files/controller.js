@@ -10,6 +10,7 @@ app.controller('ctrl', function($scope, $http, $location) {
   $scope.characters = getCharacters();
   $scope.okToCreateUser = false;
   $scope.UserInDb = false;
+  $scope.Favs = getFav();
 
   function getStarships(){
     var pageNr = 1;
@@ -56,15 +57,13 @@ app.controller('ctrl', function($scope, $http, $location) {
         access_key: '02aacf6725af847bc2910eb143d3b61b',
       }
     }).then(function(response){
-      console.log(response.data.rates);
       $scope.currencies = response.data.rates;
-      console.log($scope.currencies);
     });
 
   $scope.createUser  = function() {
     var character = $scope.User.User_character;
     var name = $scope.User.User_name;
-    
+
     $http.post("php_files/createUser.php", {
       'character': character,
       'name': name
@@ -92,8 +91,28 @@ app.controller('ctrl', function($scope, $http, $location) {
       }
       else {
         //User exist
+        sessionStorage.setItem("User_name", response.data[0].User_name);
         $scope.okToCreateUser = false;
+        console.log(sessionStorage.getItem("User_name"));
+        $location.path("/starship_search");
+        getFav();
       }
     })
+  }
+
+  function getFav(){
+    $http.post("php_files/getFav.php", {
+      'userName' : sessionStorage.getItem("User_name")
+    }).then(function(response){
+      console.log("Get fav: " + response.data[0].Fav_name);
+      $scope.Favs  = response.data;
+      return $scope.Favs;
+      console.log($scope.Favs);
+    });
+  }
+
+  $scope.log = function(){
+    getFav();
+    console.log("Log: " + sessionStorage.getItem("User_name"));
   }
 });
