@@ -11,6 +11,11 @@ app.controller('ctrl', function($scope, $http, $location) {
   $scope.okToCreateUser = false;
   $scope.UserInDb = false;
   $scope.Favs = getFav();
+  $scope.currentUser = sessionStorage.getItem("User_name");
+
+  if(sessionStorage.getItem("User_name") == null){
+    $location.path("/");
+  }
 
   function getStarships(){
     var pageNr = 1;
@@ -110,7 +115,16 @@ app.controller('ctrl', function($scope, $http, $location) {
       console.log($scope.Favs);
     });
   }
-
+  $scope.createFav = function(starshipName) {
+    var name = sessionStorage.getItem("User_name");
+    console.log(starshipName);
+    $http.post("php_files/createFav.php", {
+      'starship': starshipName,
+      'name': name
+    }).then(function(response){
+      console.log(response.data);
+    })
+  }
   $scope.log = function(){
     getFav();
     console.log("Log: " + sessionStorage.getItem("User_name"));

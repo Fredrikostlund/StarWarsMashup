@@ -16,10 +16,10 @@ $data = array();
 if(mysqli_num_rows($sql) > 0) {
   while($row = mysqli_fetch_array($sql)) {
     $data[] = $row;
-    echo json_encode($data);
+
   }
 } else {
   echo "No favorites was found";
 }
-
+echo json_encode($data);
 ?>

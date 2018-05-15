@@ -20,9 +20,14 @@
 <h4>
   Cost by rate: {{selectedCurrencies * selectedStarship.cost_in_credits}}
 </h4>
-<h3>
-  Vem är i session:
-</h3>
+<button type="submit" ng-click="createFav(selectedStarship.name)">Create Favorite</button>
+<h4>
+  Vem är i session: {{currentUser}}
+</h4>
+
+<h4>
+  Dina favoriter
+</h4>
 
 <ul>
   <li ng-repeat="Fav in Favs track by $index">
