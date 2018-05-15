@@ -128,6 +128,7 @@ app.controller('ctrl', function($scope, $http, $location) {
       'name': name
     }).then(function(response){
       console.log(response.data);
+      getFav();
     })
   }
   $scope.log = function(){
