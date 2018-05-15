@@ -1,5 +1,10 @@
 var app = angular.module('app', ['ngRoute']);
-
+//TODO ta bort favorit
+//TODO favorit redan finns meddelande
+//TODO ta bort och redigera onödiga saker (knappar)
+//TODO kolla över routning
+//TODO Presentera mer data om användaren
+//TODO design
 app.controller('ctrl', function($scope, $http, $location) {
   $scope.test_landning_page="The landning_page works"
   $scope.test_starship_search="The starship_search page works"
