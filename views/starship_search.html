@@ -28,9 +28,11 @@
 <h4>
   Dina favoriter
 </h4>
-
-<ul>
+<div ng-show="NoFavs">
+  Inga favoriter ännu!
+</div>
+<ul ng-show="!NoFavs">
   <li ng-repeat="Fav in Favs track by $index">
-    {{Fav.Fav_name}}
+    {{Fav.Fav_name}} <button ng-click="deleteFav(Fav.Fav_id)">Delete</button>
   </li>
 </ul>

@@ -1,7 +1,4 @@
 var app = angular.module('app', ['ngRoute']);
-//TODO ta bort favorit
-//TODO favorit redan finns meddelande
-//TODO ta bort och redigera onödiga saker (knappar)
 //TODO kolla över routning
 //TODO Presentera mer data om användaren
 //TODO design
@@ -9,12 +6,12 @@ app.controller('ctrl', function($scope, $http, $location) {
   $scope.test_landning_page="The landning_page works"
   $scope.test_starship_search="The starship_search page works"
   $scope.test_create_user="The create_user page works"
-
   $scope.starships = getStarships();
   $scope.currencies = [];
   $scope.characters = getCharacters();
   $scope.okToCreateUser = false;
   $scope.UserInDb = false;
+  $scope.NoFavs = false;
   $scope.Favs = getFav();
   $scope.currentUser = sessionStorage.getItem("User_name");
 
@@ -114,7 +111,12 @@ app.controller('ctrl', function($scope, $http, $location) {
     $http.post("php_files/getFav.php", {
       'userName' : sessionStorage.getItem("User_name")
     }).then(function(response){
-      console.log("Get fav: " + response.data[0].Fav_name);
+      console.log("Get fav: " + response.data);
+      if(response.data == 1){
+        $scope.NoFavs = true;;
+      } else{
+        $scope.NoFavs = false;
+      }
       $scope.Favs  = response.data;
       return $scope.Favs;
       console.log($scope.Favs);
@@ -127,12 +129,22 @@ app.controller('ctrl', function($scope, $http, $location) {
       'starship': starshipName,
       'name': name
     }).then(function(response){
+      if(response.data == 1) {
+        alert(starshipName + " already added to your favorites");
+      }
       console.log(response.data);
       getFav();
     })
   }
-  $scope.log = function(){
-    getFav();
-    console.log("Log: " + sessionStorage.getItem("User_name"));
+
+  $scope.deleteFav = function(id){
+    var name = sessionStorage.getItem("User_name");
+    $http.post("php_files/deleteFav.php", {
+      favId: id,
+      name: name
+    }).then(function(response){
+      console.log(response);
+      getFav();
+    });
   }
 });
