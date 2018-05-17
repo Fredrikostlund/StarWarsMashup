@@ -1,0 +1,16 @@
+header {
+  text-align: center;
+  background-color: black;
+  color: yellow;
+  font-size: 200%;
+}
+ul {
+  list-style: none;
+}
+li {
+  display: inline;
+}
+#user {
+  float:right;
+  margin-right: 10px;
+}
