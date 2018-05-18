@@ -6,14 +6,27 @@
   <script src="lib/angular-route.min.js"></script>
   <title>Star Wars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body ng-app="app" ng-controller="ctrl">
+  <header>
+    <ul id="head">
+      <li id="title">
+        Star Wars Starship Search
+      </li>
+      <li id="ActiveUser">
+        {{currentUser}}
+      </li>
+    </ul>
+  </header>
+  <nav>
+    <a href="#/!">Landning page</a>
+    <a href="#!starship_search" >Starship Search</a>
+    <a href="#!create_user" >Create User</a>
+  </nav>
   <div ng-view>
 
   </div>
-  <a href="#/!" class="btn btn-default" role="button">Landning page</a>
-  <a href="#!starship_search" class="btn btn-default" role="button">Starship Search</a>
-  <a href="#!create_user" class="btn btn-default" role="button">Create User</a>
   <script src="js_files/controller.js"></script>
   <script src="js_files/routning.js"></script>
 

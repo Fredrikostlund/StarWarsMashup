@@ -1,16 +1,50 @@
 header {
   text-align: center;
   background-color: black;
-  color: yellow;
+  color: #FAC223;
   font-size: 200%;
 }
-ul {
+@font-face {
+   font-family: starwarsfont;
+   src: url(STARWARS.TTF);
+}
+#title {
+  font-family: starwarsfont;
+  font-size: 200%;
+}
+body {
+  color: #FAC223;
+  background-color: black;
+}
+nav {
+  display: flex;
+  justify-content: center;
+}
+nav > a {
+  list-style: none;
+  margin: 5px;
+  font-size: 150%;
+  color: #FAC223;
+}
+#head {
   list-style: none;
 }
-li {
+#head > li {
   display: inline;
 }
-#user {
+#ActiveUser {
   float:right;
   margin-right: 10px;
+}
+.container {
+  display: flex;
+  align-self: center;
+  width: 70vw;
+  height:100vh;
+  background-color: black;
+  justify-content: center;
+}
+#favorites {
+  background-color: black;
+  margin:20px;
 }

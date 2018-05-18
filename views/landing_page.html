@@ -1,14 +1,19 @@
-<h1>Landning page</h1>
+<div class="container">
+  <center>
+    <h1>Landning page</h1>
 
-<form ng-submit="getUser(userName)">
-  <input type="text" placeholder="User name" ng-model="userName" required />
-  <button type="submit">Search User</button>
-</form>
-<div ng-show="okToCreateUser">
-  <p>
-    Error: User not found
-  </p>
+    <form ng-submit="getUser(userName)">
+      <input type="text" placeholder="User name" ng-model="userName" required />
+      <button type="submit">Search User</button>
+    </form>
+    <div ng-show="okToCreateUser">
+      <p>
+        Error: User not found
+      </p>
+    </div>
+    <p>
+      {{test_landning_page}}
+    </p>
+
+  </center>
 </div>
-<p>
-  {{test_landning_page}}
-</p>

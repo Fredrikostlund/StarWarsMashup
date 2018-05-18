@@ -1,37 +1,50 @@
-<h1>Starship Search</h1>
-<p>
-  {{test_starship_search}}
-</p>
-<select class="form-control" ng-model="selectedStarship" ng-options="starships as starships.name for starships in starships">
-</select>
-<select class="form-control" ng-model="selectedCurrencies">
-  <option value="{{value}}" ng-repeat="(key, value) in currencies">{{key}}</option>
-</select>
+<div class="container">
+  <center>
+    <h2>Search your favorite starship</h2>
+    <p>
+      {{test_starship_search}}
+    </p>
+    <h4>
+      Starship
+    </h4>
+    <select class="form-control" ng-model="selectedStarship" ng-options="starships as starships.name for starships in starships">
+    </select>
+    <h4>
+      Currency
+    </h4>
+    <select class="form-control" ng-model="selectedCurrencies">
+      <option value="{{value}}" ng-repeat="(key, value) in currencies">{{key}}</option>
+    </select>
 
-<h4>
-  Starship Cost: {{selectedStarship.cost_in_credits}}
-</h4>
+    <h4>
+      Cost of Starship: {{selectedStarship.cost_in_credits}} credits
+    </h4>
 
-<h4>
-  Rate: {{selectedCurrencies}}
-</h4>
+    <h4>
+      Rate: {{selectedCurrencies}}
+    </h4>
 
-<h4>
-  Cost by rate: {{selectedCurrencies * selectedStarship.cost_in_credits}}
-</h4>
-<button type="submit" ng-click="createFav(selectedStarship.name)">Create Favorite</button>
-<h4>
-  Vem är i session: {{currentUser}}
-</h4>
+    <h4>
+      Cost by rate: {{selectedCurrencies.key}}: {{selectedCurrencies * selectedStarship.cost_in_credits}}
+    </h4>
+    <button type="submit" ng-click="createFav(selectedStarship.name)">Add to favorites</button>
+    <h4>
+      Vem är i session: {{currentUser}}
+    </h4>
+    <div id="favorites">
+      <h4>
+        Your favorite starships
+      </h4>
+      <div ng-show="NoFavs">
+        No favorites added
+      </div>
+      <ul ng-show="!NoFavs">
+        <li ng-repeat="Fav in Favs track by $index">
+          {{Fav.Fav_name}} <button ng-click="deleteFav(Fav.Fav_id)">Delete</button>
+        </li>
+      </ul>
+    </div>
 
-<h4>
-  Dina favoriter
-</h4>
-<div ng-show="NoFavs">
-  Inga favoriter ännu!
+  </center>
+
 </div>
-<ul ng-show="!NoFavs">
-  <li ng-repeat="Fav in Favs track by $index">
-    {{Fav.Fav_name}} <button ng-click="deleteFav(Fav.Fav_id)">Delete</button>
-  </li>
-</ul>
