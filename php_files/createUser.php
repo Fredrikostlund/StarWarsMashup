@@ -6,8 +6,6 @@ $data = json_decode(file_get_contents("php://input"));
 $character = $data->character;
 $name = $data->name;
 
-
-
 $sqlCheck = mysqli_query($conn, "SELECT * FROM `Tbl_user` WHERE `User_name`='$name'");
 $data = array();
 

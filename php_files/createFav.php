@@ -16,9 +16,6 @@ if(mysqli_num_rows($favExists) < 1) {
 }
 $starshipId = mysqli_fetch_object(mysqli_query($conn, "SELECT Fav_id FROM Tbl_favorites WHERE Fav_name = '$starship'"))->Fav_id;
 
-//$query = "SELECT * FROM Tbl_hasFav WHERE hasFav_Userid = $User_id AND hasFav_Favid = $starshipId";
-
-
 $checkHasFav = mysqli_query($conn, "SELECT * FROM Tbl_hasFav WHERE hasFav_Userid = $User_id AND hasFav_Favid = $starshipId");
 
 if(mysqli_num_rows($checkHasFav) < 1) {
