@@ -17,6 +17,9 @@ body {
   background-color: black;
   color: #FAC223;
 }
+button {
+  color: black;
+}
 .star {
   position: absolute;
   width: 1px;

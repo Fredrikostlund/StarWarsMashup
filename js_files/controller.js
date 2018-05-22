@@ -16,7 +16,7 @@ app.controller('ctrl', function($scope, $http, $location) {
   $scope.currentUser = sessionStorage.getItem("User_name");
 
   if(sessionStorage.getItem("User_name") == null){
-    $location.path("/");
+    $location.path("/landing_page");
   }
 
   function getStarships(){

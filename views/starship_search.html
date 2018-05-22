@@ -25,9 +25,9 @@
     </h4>
 
     <h4>
-      Cost by rate: {{selectedCurrencies.key}}: {{selectedCurrencies * selectedStarship.cost_in_credits}}
+      Cost by rate {{selectedCurrencies.key}}: {{selectedCurrencies * selectedStarship.cost_in_credits}}
     </h4>
-    <button type="submit" ng-click="createFav(selectedStarship.name)">Add to favorites</button>
+    <button type="submit" class="btn btn-default" ng-click="createFav(selectedStarship.name)">Add to favorites</button>
     <h4>
       Vem är i session: {{currentUser}}
     </h4>
@@ -40,7 +40,7 @@
       </div>
       <ul ng-show="!NoFavs">
         <li ng-repeat="Fav in Favs track by $index">
-          {{Fav.Fav_name}} <button ng-click="deleteFav(Fav.Fav_id)">Delete</button>
+          {{Fav.Fav_name}} <button class="btn btn-default" ng-click="deleteFav(Fav.Fav_id)">Delete</button>
         </li>
       </ul>
     </div>
